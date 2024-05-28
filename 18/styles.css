@@ -1,0 +1,87 @@
+:root {
+    --dice-size: 80px;
+    --dice-bg-size: calc(var(--dice-size) * 1.28);
+    --trans-z-face: calc(var(--dice-size) / 2);
+    --trans-z-show: calc(var(--trans-z-face) * -1);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#dice-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.dice-cube {
+    width: var(--dice-size);
+    height: var(--dice-size);
+    position: absolute;
+    transition: transform 1s ease, top 1s ease, left 1s ease;
+    perspective: calc(var(--dice-size) * 4);
+}
+
+.dice-cube * {
+  box-sizing: border-box;
+}
+
+.cube {
+  width: var(--dice-size);
+  height: var(--dice-size);
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(var(--trans-z-show));
+  transition: transform 0.3s;
+}
+
+.cube.show-front {
+    transform: translateZ(var(--trans-z-show)) rotateY(0deg);
+}
+
+.cube.show-right {
+    transform: translateZ(var(--trans-z-show)) rotateY(-90deg);
+}
+
+.cube.show-back {
+    transform: translateZ(var(--trans-z-show)) rotateY(-180deg);
+}
+
+.cube.show-left {
+    transform: translateZ(var(--trans-z-show)) rotateY(90deg);
+}
+
+.cube.show-top {
+    transform: translateZ(var(--trans-z-show)) rotateX(-90deg);
+}
+
+.cube.show-bottom {
+    transform: translateZ(var(--trans-z-show)) rotateX(90deg);
+}
+
+.cube__face {
+  position: absolute;
+  width: var(--dice-size);
+  height: var(--dice-size);
+  background-color: white;
+  background-position: center;
+  background-size: var(--dice-bg-size);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for a 3D effect */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.cube__face--front { transform: rotateY(0deg) translateZ(var(--trans-z-face)); background-image: url('imgs/dice1.svg'); }
+.cube__face--right { transform: rotateY(90deg) translateZ(var(--trans-z-face)); background-image: url('imgs/dice5.svg'); }
+.cube__face--back { transform: rotateY(180deg) translateZ(var(--trans-z-face)); background-image: url('imgs/dice6.svg'); }
+.cube__face--left { transform: rotateY(-90deg) translateZ(var(--trans-z-face)); background-image: url('imgs/dice2.svg'); }
+.cube__face--top { transform: rotateX(90deg) translateZ(var(--trans-z-face)); background-image: url('imgs/dice4.svg'); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(var(--trans-z-face)); background-image: url('imgs/dice3.svg'); }
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快艇骰子(Yacht Dice Game)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="table">
+    <dice-cube></dice-cube>
+    <dice-cube></dice-cube>
+    <dice-cube></dice-cube>
+    <dice-cube></dice-cube>
+    <dice-cube></dice-cube>
+  </div>
+  <p>
+    <button id="roll-dice">擲骰子</button>
+    <span class="points"></span>
+  </p>
+
+  <table class="score-table">
+    <thead>
+      <tr>
+        <th>分類(Category)</th>
+        <th>得分(Score)</th>
+      </tr>
+    </thead>
+    <tbody id="score-table-body">
+      <!-- Upper section -->
+      <tr data-category="ones">
+        <td>一點(Aces)</td>
+        <td id="score-ones"></td>
+      </tr>
+      <tr data-category="twos">
+        <td>兩點(Twos)</td>
+        <td id="score-twos"></td>
+      </tr>
+      <tr data-category="threes">
+        <td>三點(Threes)</td>
+        <td id="score-threes"></td>
+      </tr>
+      <tr data-category="fours">
+        <td>四點(Fours)</td>
+        <td id="score-fours"></td>
+      </tr>
+      <tr data-category="fives">
+        <td>五點(Fives)</td>
+        <td id="score-fives"></td>
+      </tr>
+      <tr data-category="sixes">
+        <td>六點(Sixes)</td>
+        <td id="score-sixes"></td>
+      </tr>
+      <!-- Lower section -->
+      <tr data-category="three-kind">
+        <td>三骰同花(Three of a Kind)</td>
+        <td id="score-three-kind"></td>
+      </tr>
+      <tr data-category="four-kind">
+        <td>四骰同花(Four of a Kind)</td>
+        <td id="score-four-kind"></td>
+      </tr>
+      <tr data-category="full-house">
+        <td>葫蘆(Full House)</td>
+        <td id="score-full-house"></td>
+      </tr>
+      <tr data-category="small-straight">
+        <td>小順(Small Straight)</td>
+        <td id="score-small-straight"></td>
+      </tr>
+      <tr data-category="large-straight">
+        <td>大順(Large Straight)</td>
+        <td id="score-large-straight"></td>
+      </tr>
+      <tr data-category="yacht">
+        <td>快艇(Yacht)</td>
+        <td id="score-yacht"></td>
+      </tr>
+      <tr data-category="chance">
+        <td>全選(Chance)</td>
+        <td id="score-chance"></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>總分(Total Score)</td>
+        <td id="total-score"></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>

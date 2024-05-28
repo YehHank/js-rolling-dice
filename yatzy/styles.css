@@ -1,0 +1,111 @@
+:root {
+  --dice-size: 50px;
+  --dice-bg-size: calc(var(--dice-size) * 1.28);
+  --trans-z-face: calc(var(--dice-size) / 2);
+  --trans-z-show: calc(var(--trans-z-face) * -1);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0; /* Light background for better contrast */
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+  width: calc(var(--dice-size) * 5 + 20px); /* Adjusted to fit five dice comfortably */
+  margin: 20px 0;
+}
+
+.dice-cube {
+  display: inline-block;
+  width: var(--dice-size);
+  height: var(--dice-size);
+  margin: 5px; /* Adjusted margin for better fit */
+  perspective: calc(var(--dice-size) * 4);
+}
+
+.dice-cube * {
+  box-sizing: border-box;
+}
+
+.cube {
+  width: var(--dice-size);
+  height: var(--dice-size);
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(var(--trans-z-show));
+  transition: transform 0.3s;
+}
+
+.cube.show-front { transform: translateZ(var(--trans-z-show)) rotateY(0deg); }
+.cube.show-right { transform: translateZ(var(--trans-z-show)) rotateY(-90deg); }
+.cube.show-back { transform: translateZ(var(--trans-z-show)) rotateY(-180deg); }
+.cube.show-left { transform: translateZ(var(--trans-z-show)) rotateY(90deg); }
+.cube.show-top { transform: translateZ(var(--trans-z-show)) rotateX(-90deg); }
+.cube.show-bottom { transform: translateZ(var(--trans-z-show)) rotateX(90deg); }
+
+.cube__face {
+  position: absolute;
+  width: var(--dice-size);
+  height: var(--dice-size);
+  background-color: white;
+  background-position: center;
+  background-size: var(--dice-bg-size);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for a 3D effect */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.cube__face--front { transform: rotateY(0deg) translateZ(var(--trans-z-face)); background-image: url(imgs/dice1.svg); }
+.cube__face--right { transform: rotateY(90deg) translateZ(var(--trans-z-face)); background-image: url(imgs/dice5.svg); }
+.cube__face--back { transform: rotateY(180deg) translateZ(var(--trans-z-face)); background-image: url(imgs/dice6.svg); }
+.cube__face--left { transform: rotateY(-90deg) translateZ(var(--trans-z-face)); background-image: url(imgs/dice2.svg); }
+.cube__face--top { transform: rotateX(90deg) translateZ(var(--trans-z-face)); background-image: url(imgs/dice4.svg); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(var(--trans-z-face)); background-image: url(imgs/dice3.svg); }
+
+button {
+  font-size: 14pt;
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #007BFF; /* Blue background for buttons */
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+.score-table {
+  width: 100%;
+  max-width: 400px; /* Set a max-width for the score table */
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.score-table th, .score-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.score-table th {
+  background-color: #f2f2f2;
+}
+
+.score-table td.selected,
+.score-table td.selected ~ td {
+  font-weight: bold;
+  background-color: #e0e0e0; /* Light grey background for selected row */
+}
+
+tfoot td {
+  font-weight: bold;
+}
